@@ -28,7 +28,5 @@ for i in range(11): #Beginning of is included, end of range is not
     print (i * base)
     #When we have seberal repatition we can use veral loop
     #Sometimes they can be nested loops
-for var in range (2,11):
-    for i in range(1,11):
-        print(i * var, end= '   ')
-    print()
+for num1 in range (1,11):
+    print (num1)
