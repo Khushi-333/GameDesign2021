@@ -42,10 +42,37 @@ while (x !=4): #loop is conditioned to an event\
     x=menu()         #this is a funciton call
     if (x==1):          #if statement are selection or branching(else)
         print("Level 1 Chosen")
+        print('Practice:')
+        print('press spacebar to jump')
+        space=str(input())
+        jump=space.isspace()
+        print(jump)
+        print('enter nickname:')
+        name=str(input())
+        z=name.upper()
+        print('NAME:', z)
+        z=name.isalpha()
+        print(z)
 
     if (x==2):
         print("Level 2 Chosen")
+        print('Practice:')
+        print('press number 3 key to duck')
+        three=str(input())
+        duck=three.isnumeric()
+        print(duck)
+        print('enter nickname:')
+        name=str(input())
+        z=name.upper()
+        print('NAME:', z)
+        z=name.isalpha()
+        print(z)
 
     if (x==3):
         score()
+        print('enter age:')
+        a=str(input())
+        b=a.isdigit()
+        print(b)
+
 print("Goodbye! Thank you for playing!")
