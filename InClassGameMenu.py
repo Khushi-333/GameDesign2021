@@ -36,7 +36,9 @@ def score():
     print(l3)
     print(l8)
 x=1 #global variable
-
+def pause():
+    print('press enter to continue')
+    input()
 
 while (x !=4): #loop is conditioned to an event\
     x=menu()         #this is a funciton call
@@ -44,15 +46,16 @@ while (x !=4): #loop is conditioned to an event\
         print("Level 1 Chosen")
         print('Practice:')
         print('press spacebar to jump')
-        space=str(input())
-        jump=space.isspace()
-        print(jump)
+        space=str(input()) #input is a function
+        jump=space.isspace() #isspace is a method of strings (smaller part of bigger thing) have to refer with a .
+        print(jump) #update variable to new value if dont need original. can print (var.upper() if want to keep original answer
         print('enter nickname:')
         name=str(input())
         z=name.upper()
         print('NAME:', z)
         z=name.isalpha()
         print(z)
+        pause()
 
     if (x==2):
         print("Level 2 Chosen")
@@ -67,6 +70,7 @@ while (x !=4): #loop is conditioned to an event\
         print('NAME:', z)
         z=name.isalpha()
         print(z)
+        pause()
 
     if (x==3):
         score()
@@ -74,5 +78,6 @@ while (x !=4): #loop is conditioned to an event\
         a=str(input())
         b=a.isdigit()
         print(b)
+        pause()
 
 print("Goodbye! Thank you for playing!")
