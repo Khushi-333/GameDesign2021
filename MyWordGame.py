@@ -13,30 +13,36 @@ gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','h
 answer=input('Do you want to guess a word? ')
 name=input('What is your name? ')
 answer=answer.upper()
+def updateword(word):
+     for char in word:
+            if char in guesses:
+                print(char, end=' ')
+            else:
+                print('_', end=' ')
 while 'Y' in answer:
     print('good luck!', name)
     word=random.choice(gameWords)
     counter=len(word)
     turns=10 #should we consider controlling this number? when they miss
     guesses=''
-    while turns>0 and counter>0 :
-        for char in word:
-            if char in guesses:
-                print(char, end=' ')
-            else:
-                print('_', end=' ')
+    updateword(word)
+    while counter>0 and turns>0:
         newGuess=input('\n\n Give me a letter ') 
         if newGuess not in word:
             turns -=1       #turns=turns-1
             print('wrong! you have', turns, 'turns left')
-        amount=word.count(newGuess)
-        if amount:
+        else:
+            amount=word.count(newGuess)
             counter -=amount
             print('Nice guess!')
-        guesses += newGuess
-        
+        guesses += newGuess #guesses=guesses+newGuess
+        updateword(word)
+    if counter==0:
+        print('\n\n you guessed right!')
+    else:
+        print('oops! better luck next time')    
 
 
 
     answer=input('would you like to play again? ').upper()
-print(name, ', Thank you for playing!')
+    print(name, ', Thank you for playing!')
