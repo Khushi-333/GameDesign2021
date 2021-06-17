@@ -1,3 +1,9 @@
+import datetime
+import os
+import sys
+import time
+import random
+
 l1="**************************"
 l2="*       My game          *"
 l3="*                        *"
@@ -29,15 +35,10 @@ def pause():
         return True
     else:
         return False
-    
-def MyScore():
-    score=0
-    return score
 
-score=0     
+     
 
 def wordGame():
-    import random
     gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']
     confirm=input('Are you ready to guess a word?')
     confirm=confirm.upper()
@@ -58,14 +59,17 @@ def wordGame():
         updateword(word)
         while counter>0 and turns>0:
             newGuess=input('\n\n Give me a letter ') 
-            if newGuess not in word:
-                turns -=1       #turns=turns-1
-                print('wrong! you have', turns, 'turns left')
+            if newGuess not in guesses:
+                if newGuess not in word:
+                    turns -=1       #turns=turns-1
+                    print('wrong! you have', turns, 'turns left')
+                else:
+                    amount=word.count(newGuess)
+                    counter -=amount
+                    print('Nice guess!')
+                guesses += newGuess #guesses=guesses+newGuess
             else:
-                amount=word.count(newGuess)
-                counter -=amount
-                print('Nice guess!')
-            guesses += newGuess #guesses=guesses+newGuess
+                print('you used this one already')
             updateword(word)
         if counter==0:
             print('\n\n you guessed right!')
@@ -76,17 +80,16 @@ def wordGame():
         confirm=confirm.upper()
     if 'N' in confirm:
         print('your score is', score)
-        import datetime
-        import os
-        import sys
-        import time
-        date=datetime.date.today()
-        File=open('WordGameScores.txt', 'a')
+        date=datetime.datetime.now()
+        line=str(date.month)+'/'+str(date.day)+'/'+str(date.year)
+        File=open('WordGameScores.txt', 'a')        #append, will add to existing file text
         time.sleep(2)
-        newline=('\n\n' + str(score) + '    ' + str(date))
+        newline=('\n\n score:' + str(score) + '    ' + 'name: '+ name + '    ' + 'date: ' + str(line))
         File.write(newline) 
         File.close()
 
+        
+        
         
         
         
@@ -106,9 +109,11 @@ def option2():
     while confirm==True:
         fileName='WordGameScores.txt'
         PEN=open(fileName, 'r')
+
         print(PEN.read())
         PEN.close()
         confirm=pause()
+
 
 
 
