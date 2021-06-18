@@ -13,6 +13,7 @@ pygame.init()
 pygame.time.delay(100)
 WIDTH=640
 HEIGHT=512
+bg=pygame.image.load('Images/background.jpg')
 #create object to open window
 white=[255, 255, 255]
 purple=[200, 190, 0]
@@ -20,6 +21,7 @@ green=[50, 25, 255]
 
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 screen.fill(green)
+screen.blit(bg,(0,0))
 pygame.display.set_caption('My Game')
 #command to run updated code
 #you must ALWAYS
