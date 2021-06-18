@@ -13,7 +13,8 @@ pygame.init()
 pygame.time.delay(100)
 WIDTH=640
 HEIGHT=512
-bg=pygame.image.load('Images/background.jpg')
+bg=pygame.image.load('Images/photo1BG.jpg')
+some=pygame.image.load('Images/character.png')
 #create object to open window
 white=[255, 255, 255]
 purple=[200, 190, 0]
@@ -21,7 +22,6 @@ green=[50, 25, 255]
 
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 screen.fill(green)
-screen.blit(bg,(0,0))
 pygame.display.set_caption('My Game')
 #command to run updated code
 #you must ALWAYS
@@ -36,6 +36,8 @@ center= x,y
 hbox2,wbox2=30,30
 rect=pygame.Rect(x,y,hbox,wbox) #square/rectangle (only shape to declare in advance)
 rect2=pygame.Rect(x2,y2,hbox2,wbox2)
+jumpCheck=False
+jump=10
 while check:
     for event in pygame.event.get():
         if event.type== pygame.QUIT:
@@ -44,14 +46,26 @@ while check:
     keyBoardKey=pygame.key.get_pressed()    #checking what key is pressed
 
     if keyBoardKey[pygame.K_LEFT]:      #moving left on x (-)
-        rect.x -=speed                 
+        rect.x -=speed  
+        x -=speed              
     if keyBoardKey[pygame.K_RIGHT]:     #moving right on x (+)
         rect.x +=speed
-    if keyBoardKey[pygame.K_DOWN]:      #moving down on y (+)
-        rect.y +=speed
-    if keyBoardKey[pygame.K_UP]:         #moving up on y (-)
-        rect.y -=speed
-
+        x +=speed
+    
+    if not jumpCheck:
+        if keyBoardKey[pygame.K_DOWN]:      #moving down on y (+)
+            rect.y +=speed
+        if keyBoardKey[pygame.K_UP]:         #moving up on y (-)
+            rect.y -=speed
+        if keyBoardKey[pygame.K_SPACE]:
+            jumpCheck=True
+    else:
+        if jump >= -10:
+            y -=(jump*abs(jump))/2
+            jump-=1
+        else:
+            jump = 10
+            jumpCheck=False
     if keyBoardKey[pygame.K_1]:      
         rect2.x -=speed
     if keyBoardKey[pygame.K_2]:
@@ -85,6 +99,8 @@ while check:
         rect2.x +=3    
 
     screen.fill(green)
+    screen.blit(bg,(0,0))
+    screen.blit(some,(x,y))
     circ=pygame.draw.circle(screen, (white), (x/2,y/2), radius, 10) #where, color, position, radius, line thickness
     pygame.draw.rect(screen,(purple),rect2)
     pygame.draw.rect(screen,(white),rect)
