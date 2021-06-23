@@ -15,9 +15,6 @@ BLACK = [0,0,0]
 # Word lists  
 gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']  
 
- 
- 
-
 # load images to list  
 images = []  
 for i in range(7):  
@@ -39,14 +36,15 @@ dist=10
 letters=[]#an array of arrays  [[x,y, ltr, boolean]] 
 
 #DEfine where to start our drawing 26 letter, 13 letter in each line 
-startx= round((WIDTH - (Wbox + dist)*13) /2) #int function round 
-starty= 350 
+def defineButtons():
+    startx= round((WIDTH - (Wbox + dist)*13) /2) #int function round 
+    starty= 350 
 
 #load the letters into our double array 
-for i in range(26): 
-    x=startx +dist*2+((Wbox +dist)*(i%13)) 
-    y=starty+((i//13)*(dist + Wbox *2)) 
-    letters.append([x,y,chr(A+i), True]) 
+    for i in range(26): 
+        x=startx +dist*2+((Wbox +dist)*(i%13)) 
+        y=starty+((i//13)*(dist + Wbox *2)) 
+        letters.append([x,y,chr(A+i), True]) 
 
 width=screen.get_width()
 height=screen.get_height()
@@ -87,36 +85,48 @@ def dis_message(message):
 #always have a way to close your screen  
 confirm=True
 
-def playAgainQuestion(ask):
-    screen.fill(WHITE)
-    text2=TitleFont.render(ask,1,BLACK)
-    screen.blit(text2, (200,200))
-    rectyes=pygame.Rect(200,300,150,100)
-    pygame.draw.rect(screen, BLACK, rectyes, width=1)
-    rectno=pygame.Rect(400,300,150,100)
-    pygame.draw.rect(screen, BLACK, rectno, width=1)
-    textyes=WordFont.render('YES', 1, BLACK)
-    screen.blit(textyes, (230,330))
-    textno=WordFont.render('NO', 1, BLACK)
-    screen.blit(textno,(430,330))
-    confirm=''
-    if confirm:
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                ax,ay =pygame.mouse.get_pos()
-                if rectyes.collidepoint(ax,ay):
-                    confirm=True
-                else:
-                    confirm=False
-                if rectno.collidepoint(ax,ay):
-                    confirm=False
-                else:
-                    confirm=False
-    pygame.display.update()
+def game_Init(message):
 
+    test=True
+    while test:
+        #Print message
+        screen.fill(WHITE)
+        text = WordFont.render(message, 1, BLACK)
+        screen.blit(text, (WIDTH/2 - text.get_width()/2, round(HEIGHT/3)))
+
+        #rect1
+        rect1=pygame.Rect(150, 350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect1, width=1)
+        text = LetterFont.render("Yes", 1, BLACK)
+        screen.blit(text, (160 , 350))
+
+        #rect 2
+        rect2=pygame.Rect(550, 350, Wbox*2,Wbox*2)
+        pygame.draw.rect(screen, BLACK, rect2, width=1)
+        text = LetterFont.render("No", 1, BLACK)
+        screen.blit(text, (560 , 350))
+       
+        #Check collide Point and rectangle
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit() 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mx,my= pygame.mouse.get_pos()
+                if rect1.collidepoint((mx,my)):
+                    #call main function
+                    GamePlay()
+                if rect2.collidepoint((mx,my)):
+                    dis_message("goodbye!!")
+                    pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()  
+    
 def GamePlay():
     word=random.choice(gameWords).upper() 
     print(word) 
+    defineButtons()
     turns= 0   #should we conider controlling this number when he/she misses      
     guesses=[] 
     check = True  
@@ -145,19 +155,12 @@ def GamePlay():
                 won=False 
         if won: 
             dis_message("You Won!!!")
-            break 
+            break
         if turns == 6: 
             dis_message("You lost") 
             break
-         
     #check if we won or lost the game 
         
-
-
-while confirm == True:
-    GamePlay()
-    playAgainQuestion('Play again?')
-      
-pygame.display.flip()
-pygame.quit()  
-sys.exit() 
+message="do you want to play?"
+while True:
+    game_Init("Do you want to play?")
