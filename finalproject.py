@@ -101,6 +101,8 @@ def GameMenu():
                 screen.blit(bg, (0,0))
                 text = TitleFont.render("Goodbye!", 1, PURPLE)
                 screen.blit(text, (100,100))
+                pygame.display.update()
+                pygame.time.delay(2000)
                 pygame.quit()
                 sys.exit()
     pygame.display.update()
