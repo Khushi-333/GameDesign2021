@@ -14,7 +14,7 @@ BLACK = [0,0,0]
 PURPLE = [182,30,246]
 
 #load images needed
-bg=pygame.image.load('final project images/skyBGD.jpg')
+bg=pygame.image.load('final project images/sky2.png')
 # Define Font objects  
 TitleFont= pygame.font.SysFont("comicsans", 70)  #set the type of font and the size   
 WordFont=pygame.font.SysFont("comicsans", 50)  
