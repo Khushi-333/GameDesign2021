@@ -3,3 +3,41 @@
 93pts    date: 6/24/2021    level: two
 
 187pts    date: 6/24/2021    level: one
+
+0pts    date: 6/25/2021    level: one
+
+167pts    date: 6/25/2021    level: one
+
+184pts    date: 6/25/2021    level: one
+
+79pts    date: 6/25/2021    level: two
+
+102pts    date: 6/25/2021    level: two
+
+64pts    date: 6/25/2021    level: three
+
+196pts    date: 6/25/2021    level: one
+
+200pts    date: 6/25/2021    level: one
+
+168pts    date: 6/25/2021    level: one
+
+120pts    date: 6/25/2021    level: one
+
+198pts    date: 6/25/2021    level: one
+
+182pts    date: 6/25/2021    level: one
+
+80pts    date: 6/25/2021    level: two
+
+203pts    date: 6/25/2021    level: one
+
+194pts    date: 6/25/2021    level: one
+
+97pts    date: 6/25/2021    level: two
+
+92pts    date: 6/25/2021    level: three
+
+178pts    date: 6/25/2021    level: one
+
+88pts    date: 6/25/2021    level: three

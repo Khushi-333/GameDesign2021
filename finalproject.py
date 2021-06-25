@@ -329,14 +329,15 @@ def Lvl1():
             score +=1
         print(score)
         if rect1.y == 750:
+            pygame.time.delay(500)
             screen.fill(WHITE)
             run=False
             pygame.time.delay(2000)
-
         redrawBG()
         redrawGameWindow()
         pygame.display.update
     updateScores(score, level)
+    pygame.display.update()
     GameMenu()
 
 def Lvl2():
